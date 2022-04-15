@@ -26,8 +26,6 @@ const deleteUser = (req, res) => {
     res.sendStatus(200);
 }
 
-
-
 const createUser = (req, res) => {
     const newUser = req.body;
     newUser._id = (new Date()).getTime() + '';
