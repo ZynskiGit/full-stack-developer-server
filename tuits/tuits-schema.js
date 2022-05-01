@@ -9,7 +9,7 @@ const schema = mongoose.Schema({
     verified: Boolean,
     handle: String,
     time: Number,
-    title, String,
+    title: String,
     tuit: String,
     attachments: {
         video: String

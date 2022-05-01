@@ -1,6 +1,5 @@
 import * as tuitsDao from "../tuits/tuits-dao.js";
 
-
 const findAllTuits = async (req, res) => {
     const tuits = await tuitsDao.findAllTuits()
     res.json(tuits);
@@ -22,4 +21,11 @@ const updateTuit = async (req, res) => {
     const updatedTuit = req.body;
     const status = await tuitsDao.updateTuit(tuitdIdToUpdate, updatedTuit);
     res.send(status);
+}
+
+export default (app) => {
+    app.post('/api/tuits', createTuit);
+    app.get('/api/tuits', findAllTuits);
+    app.put('/api/tuits/:tid', updateTuit);
+    app.delete('/api/tuits/:tid', deleteTuit);
 }
