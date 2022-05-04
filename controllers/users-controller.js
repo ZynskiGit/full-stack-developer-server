@@ -17,9 +17,9 @@ const findUserByEmail = async (req, res) => {
     res.json(user)
 }
 const findUserByCredentials = async (req, res) => {
-    const crendentials = req.body
-    const email = crendentials.email
-    const password = crendentials.password
+    const credentials = req.body
+    const email = credentials.email
+    const password = credentials.password
     const user = await usersDao.findUserByCredentials(email, password)
     if(user) {
         res.sendStatus(200)

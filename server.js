@@ -53,12 +53,14 @@ import testController from "./controllers/test-controller.js";
 import usersController from "./controllers/users-controller.js";
 import commentsController from "./database/comments/comments-controller.js";
 import moviesController from "./controllers/movies-controller.js";
+import artController from "./controllers/art-controller.js";
 examplesController(app);
 //const tuitsController = require("./controllers/tuits-controller")
 tuitsController(app);
 usersController(app);
 commentsController(app);
 moviesController(app);
+artController(app);
 //require("./controllers/users-controller")(app);
 //require("./controllers/test-controller")(app);
 //require("./controllers/movies-controller")(app);

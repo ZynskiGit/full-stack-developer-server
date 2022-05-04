@@ -4,15 +4,15 @@ import dao from "./comments-dao.js";
 
 const postComment = async (req, res) => {
     const comment = req.body
-    const imdbID = req.params.imdbID
+    const objectnumber = req.params.objectNumber
     const userId = req.params.userId
-    const insertedComment = await dao.postComment(userId, imdbID, comment)
+    const insertedComment = await dao.postComment(userId, objectnumber, comment)
     res.json(insertedComment)
 }
 
-const findCommentsByImdbID = async (req, res) => {
-    const imdbID = req.params.imdbID
-    const comments = await dao.findCommentsByImdbID(imdbID)
+const findCommentsByObjectNumber = async (req, res) => {
+    const objectnumber = req.params.objectnumber
+    const comments = await dao.findCommentsByObjectNumber(objectnumber)
     res.json(comments)
 }
 
@@ -23,7 +23,7 @@ const findCommentsByUserId = async (req, res) => {
 }
 
 export default (app) => {
-    app.post('/movies/:imdbID/comments/:userId', postComment)
-    app.get('/movies/:imdbID/comments', findCommentsByImdbID)
-    app.get('/users/:userId/comments', findCommentsByUserId)
+    app.post('/art/:objectnumber/comments/:userId', postComment)
+    app.get('/art/:objectnumber/comments', findCommentsByObjectNumber)
+    app.get('/art/:userId/comments', findCommentsByUserId)
 }
