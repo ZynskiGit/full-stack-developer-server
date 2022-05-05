@@ -1,30 +1,13 @@
 import mongoose from 'mongoose';
-//const mongoose = require('mongoose')
 import express from 'express'
-//const express = require('express');
-//const session = require('express-session')
 import session from 'express-session'
 const app = express();
 const DB_USERNAME = process.env.DB_USERNAME
 const DB_PASSWORD = process.env.DB_PASSWORD
 // mongoose.connect(`mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.2rzfx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
 mongoose.connect('mongodb://localhost:27017/cs4550-sp22');
-//
-// const tuitsSchema = mongoose.Schema({
-//   tuit: String,
-//   likes: {type: Number, defaultValue: 0}
-// }, {collection: "tuits"});
-//
-// const tuitsModel = mongoose.model("TuitsModel", tuitsSchema);
-//
-// const findAllTuits = async () => {
-//   const tuits = await tuitsModel.find()
-//   console.log(tuits)
-// }
-//
-// findAllTuits();
 
-//const cors = require('cors');
+
 import cors from 'cors'
 app.use(cors({
     credentials: true,
@@ -46,28 +29,12 @@ if (app.get('env') === 'production') {
 
 app.use(session(sess))
 
-//const examples = require('./controllers/examples-controller');
-import examplesController from "./controllers/examples-controller.js";
-import tuitsController from "./controllers/test-controller.js";
-import testController from "./controllers/test-controller.js";
+
 import usersController from "./controllers/users-controller.js";
 import commentsController from "./database/comments/comments-controller.js";
-import moviesController from "./controllers/movies-controller.js";
 import artController from "./controllers/art-controller.js";
-examplesController(app);
-//const tuitsController = require("./controllers/tuits-controller")
-tuitsController(app);
 usersController(app);
 commentsController(app);
-moviesController(app);
 artController(app);
-//require("./controllers/users-controller")(app);
-//require("./controllers/test-controller")(app);
-//require("./controllers/movies-controller")(app);
-//require("./database/comments/comments-controller")(app);
-
-// app.get('/hello', (request, response) => {
-//   response.send("Hello World");
-// });
 
 app.listen(4000);

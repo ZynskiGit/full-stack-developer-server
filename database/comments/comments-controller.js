@@ -23,7 +23,7 @@ const findCommentsByUserId = async (req, res) => {
 }
 
 export default (app) => {
-    app.post('/art/:objectnumber/comments/:userId', postComment)
-    app.get('/art/:objectnumber/comments', findCommentsByObjectNumber)
-    app.get('/art/:userId/comments', findCommentsByUserId)
+    app.post('/objects/:objectnumber/comments/:userId', postComment)
+    app.get('/objects/:objectnumber/comments', findCommentsByObjectNumber)
+    app.get('/objects/:userId/comments', findCommentsByUserId)
 }

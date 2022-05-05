@@ -26,11 +26,37 @@ const likeArt = async (art) => {
     return existingArt
 }
 
+const dislikeArt = async (art) => {
+    let existingArt = await artModel.findOne({objectnumber: art.objectnumber})
+    if(existingArt) {
+        // update
+        await artModel.updateOne({objectnumber: art.objectnumber}, {
+            $set: {dislikes: existingArt.dislikes + 1}
+        })
+        existingArt.dislikes++
+    } else {
+        // insert
+        try {
+            existingArt = await artModel.create({
+                // title: art.title,
+                // objectnumber: art.objectnumber,
+                // poster: art.primaryimageurl,
+                ...art,
+                likes: 0,
+                dislikes: 1
+            })
+        } catch(e) {
+            console.log(e)
+        }
+    }
+    return existingArt
+}
+
 const findArtByObjectNumber = async (objectnumber) => {
     const art = await artModel.findOne({objectnumber})
     return art
 }
 
 export default {
-    likeArt, findArtByObjectNumber
+    dislikeArt, likeArt, findArtByObjectNumber
 }
